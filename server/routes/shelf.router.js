@@ -41,7 +41,16 @@ router.post('/', (req, res) => {
  * Delete an item if it's something the logged in user added
  */
 router.delete('/:id', (req, res) => {
-
+    console.log(req.user);
+    console.log(req.params);
+    console.log(req.body);
+    
+    // if (req.user.id === Number(req.params.id)) {
+    //     const queryText = `DELETE FROM item WHERE id=`
+    // }
+    res.sendStatus(200);
+    
+    
 });
 
 
