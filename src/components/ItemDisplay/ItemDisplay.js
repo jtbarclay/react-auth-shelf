@@ -13,11 +13,11 @@ class ItemDisplay extends Component {
         this.props.dispatch({ type: 'GET_ITEMS' });
     }
 
-    handleDelete = (id, itemId) => {
-        console.log(itemId);
+    handleDelete = (itemId) => {
+        console.log('in handleDelete', itemId);
         
-        axios.delete(`/api/shelf/${id}`, {itemId: itemId})
-            .then((response) => {
+        axios.delete(`/api/shelf/${itemId}`)
+            .then(() => {
                 this.props.dispatch({ type: 'GET_ITEMS' })
             })
             .catch((error) => {
@@ -40,7 +40,7 @@ class ItemDisplay extends Component {
                             <tr key={item.id}>
                                 <td>{item.description}</td>
                                 <td><img className="item-image" src={item.image_url} /></td>
-                                <td><button onClick={() => this.handleDelete(item.user_id, item.id)}>Delete</button></td>
+                                <td><button onClick={() => this.handleDelete(item.id)}>Delete</button></td>
                             </tr>
                         )}
                     </tbody>
