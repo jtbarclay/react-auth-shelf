@@ -17,5 +17,6 @@ CREATE TABLE "item" (
 );
 
 INSERT INTO "item" ("description", "image_url", "user_id") 
-VALUES ('a goat','goat1.jpg','1'),('a goat','goat2.jpg','2'),('a goat','goat3.jpg','3'),('a goat','goat4.jpg','4'),
-('a funny goat','funnygoat1.jpg','1'),('a funny goat','funnygoat2.jpg','2'),('a funny goat','funnygoat3.jpg','3'),('a funny goat','funnygoat4.jpg','4')
+VALUES ('a goat','images/goat1.jpg','1'),('a goat','images/goat2.jpg','2'),('a goat','images/goat3.jpg','3'),('a goat','images/goat4.jpg','4'),
+('a funny goat','images/funnygoat1.jpg','1'),('a funny goat','images/funnygoat2.jpg','2'),('a funny goat','images/funnygoat3.jpg','3'),('a funny goat','images/funnygoat4.jpg','4')
+
