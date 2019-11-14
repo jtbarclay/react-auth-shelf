@@ -18,8 +18,22 @@ router.get('/', (req, res) => {
 /**
  * Add an item for the logged in user to the shelf
  */
-router.post('/', (req, res) => {
-
+router.post('/', (req, res) => {   
+    // sql query
+    const query = `
+        INSERT INTO item (description, image_url, user_id)
+        VALUES ($1, $2, $3);
+    `;
+    // add new item to database
+    pool.query(query, [req.body.name, req.body.imgUrl, req.user.id])
+        .then((response) => {
+            console.log('shelf POST response', response);
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('shelf POST error', error);
+            res.sendStatus(500);
+        });
 });
 
 
