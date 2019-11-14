@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
-function postItem(action) {
+function* postItem(action) {
     // log action.payload
     console.log('In postSaga action.payload', action.payload);
     // send item object to server
