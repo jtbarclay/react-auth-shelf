@@ -1,10 +1,10 @@
-import React from 'react';
-import connect from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 
 class Form extends Component {
 
-    state={
+    state = {
         name: '',
         imgUrl: '',
     }
@@ -20,14 +20,25 @@ class Form extends Component {
         this.setState({
             name: this.state.name,
             imgUrl: event.target.value,
-        })   
+        })
+    }
+
+    handleSubmit = () => {
+        this.props.dispatch({ type: 'POST_ITEM', payload: this.state});
+        this.setState({
+            name: '',
+            imgUrl: '',
+        });
     }
 
     render() {
-        return(
+        return (
             <div>
-                <input type="text" value={this.state.name} onChange={this.handleItemInput} placeholder="item"/>
-                <input value={this.state.imgUrl} onChange={this.handleImageInput} placeholder="image url"/>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" value={this.state.name} onChange={this.handleItemInput} placeholder="item" />
+                    <input type="text" value={this.state.imgUrl} onChange={this.handleImageInput} placeholder="image url" />
+                    <input type="submit" placeholder="Submit" />
+                </form>
             </div>
         )
     }
