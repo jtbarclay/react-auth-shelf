@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import Form from '../Form/Form';
 
 import './App.css';
+import Edit from '../Edit/Edit';
 
 class App extends Component {
   componentDidMount () {
@@ -60,6 +61,11 @@ class App extends Component {
               exact
               path="/form"
               component={Form}
+            />
+            <ProtectedRoute
+              exact
+              path="/edit"
+              component={Edit}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

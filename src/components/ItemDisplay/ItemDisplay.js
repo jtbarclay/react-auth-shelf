@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ItemDisplay.css'
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+
 
 class ItemDisplay extends Component {
 
@@ -25,6 +27,11 @@ class ItemDisplay extends Component {
             })
     }
 
+    handleEdit = (item) => {
+        this.props.dispatch({ type: 'EDIT_ITEM', payload: item });
+        this.props.history.push('/edit');
+    }
+
     render() {
         return (
             <>
@@ -40,12 +47,13 @@ class ItemDisplay extends Component {
                             <tr key={item.id}>
                                 <td>{item.description}</td>
                                 <td><img className="item-image" src={item.image_url} /></td>
+                                <td><button onClick={() => this.handleEdit(item)}>Edit</button></td>
                                 <td><button onClick={() => this.handleDelete(item.id)}>Delete</button></td>
                             </tr>
                         )}
                     </tbody>
                 </table>
-                <pre>{JSON.stringify(this.props.state.itemDisplay, null, 2)}</pre>
+                {/* <pre>{JSON.stringify(this.props.state.editItem, null, 2)}</pre> */}
             </>
         );
     }
@@ -58,4 +66,4 @@ const mapStateToProps = state => ({
     state
 });
 
-export default connect(mapStateToProps)(ItemDisplay);
+export default connect(mapStateToProps)(withRouter(ItemDisplay));
