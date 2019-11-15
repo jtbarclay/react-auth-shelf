@@ -68,9 +68,24 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 /**
  * Update an item if it's something the logged in user added
  */
-router.put('/:id', (req, res) => {
-
+router.put('/', rejectUnauthenticated, (req, res) => {   
+    // sql query
+    const query = `
+        UPDATE "item" SET "description"=$1, "image_url"=$2
+        WHERE id = $3 AND user_id = $4;
+    `;
+    // add new item to database
+    pool.query(query, [req.body.description, req.body.image_url, req.body.id, req.user.id])
+        .then((response) => {
+            console.log('shelf PUT response', response);
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('shelf PUT error', error);
+            res.sendStatus(500);
+        });
 });
+
 
 
 /**
